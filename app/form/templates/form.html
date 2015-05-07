@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<div id="form-container">
+			
+			<div class="page-header text-center">
+				<a ui-sref="home" class="btn close-btn">
+					<span class="glyphicon glyphicon-remove"></span>
+				</a>
+				<h1>{{title}}</h1>
+				
+				<div id="status-buttons" class="text-center">
+					<p ui-sref-active="active" ui-sref=".profile"><span>1</span> Profile</p>
+					<p ui-sref-active="active" ui-sref=".interests"><span>2</span> Interest</p>
+					<p ui-sref-active="active" ui-sref=".payment"><span>3</span> Payment</p>
+				</div>
+			</div>
+
+			<form id="signup-form" ng-submit="processForm()">
+				<div id="form-views" ui-view></div>
+			</form>
+		</div>
+	</div>
+</div>
