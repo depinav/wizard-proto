@@ -1,5 +1,5 @@
 var wizardOne = angular.module('WizardOne', []);
-wizardOne.controller('wizardOneCtrl', function($scope, $rootScope) {
+wizardOne.controller('wizardOneCtrl', function($scope, $http) {
 
   $scope.master = {
     name: "Ronny",
@@ -9,8 +9,15 @@ wizardOne.controller('wizardOneCtrl', function($scope, $rootScope) {
   };
 
   $scope.longStage = 0;
-  $scope.direction = 1;
-
+  
+  $scope.update = function(user,nextStage) {
+    $scope.master = angular.copy(user);
+    $scope.direction = 1;
+    $scope.selection = nextStage;
+    if (nextStage=="stage3"){
+      $scope.longStage = 1;
+    }
+  };
   $scope.reset = function() {
     $scope.user = angular.copy($scope.master);
   };
@@ -20,24 +27,10 @@ wizardOne.controller('wizardOneCtrl', function($scope, $rootScope) {
     return angular.equals(user, $scope.master);
   };
 
-  $scope.forward = function(stage, user) {
-  	$scope.direction = 1;
-  	update(stage, user);
-  }
-
-  $scope.back = function(stage) {
+  $scope.backTo = function(stage) {
     $scope.direction = 0;
-    update(stage);
+    $scope.selection = stage;
   };
-
-  function update(nextStage, user) {
-    $scope.master = angular.copy(user);
-    $scope.selection = nextStage;
-    // if (nextStage=="finish"){
-    //   $scope.longStage = 1;
-    // }
-  };
-
 });
 
 export {wizardOne};
